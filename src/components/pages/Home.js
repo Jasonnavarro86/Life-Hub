@@ -1,12 +1,20 @@
-import React from 'react';
+import React from 'react'
+import styled from 'styled-components'
+
+const Wrapper = styled.div`
+text-align: center;
+`
+
+
 
 const Home= () =>
 
-<div>
+
+<Wrapper>
 
 <h1>Whats up world</h1>
 
 
-</div>;
+</Wrapper>
 
-export default Home;
+export default Home
