@@ -26,12 +26,12 @@ margin: 1em;
 }
 `
 
-export const Modal = ({children}) =>
+export const Modal = ( {children}) =>
 
 <ModalDiv className="modal fade loginModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div className="modal-dialog modal-lg">
     <ModalContainer className="modal-content">
-    <H2>Login</H2>
+    <H2>{props.text}</H2>
       {children}
     </ModalContainer>
   </div>

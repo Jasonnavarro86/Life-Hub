@@ -28,14 +28,14 @@ text-align: center;
 font-size: 25px;
 text-decoration: none;
 font-family: 'Montserrat', sans-serif;
-
+font-weight: 700;
 }
 `
 
 const Nav = ({children}) =>
 
  <Container>
-  <A href="#"> <strong>Rosie</strong></A>
+  <A href="/"> <strong>Rosie</strong></A>
       {children}
  </Container>
 

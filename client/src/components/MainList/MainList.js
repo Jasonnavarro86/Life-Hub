@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 
-const ListItem = styled.div`
+const ListItem = styled.ul`
 @media (max-width: 375px){
     font-size: 20px;
     text-align: center;
@@ -14,11 +14,19 @@ const ListItem = styled.div`
     font-weight: bold;
 }
 `
+const Li = styled.li`
+@media (max-width: 375px){
+    background-color:red;
+    width:100%;
+    height:100%;
+    color:white;
+}
+`
 
 const MainListItem = (props) =>
 
-<ListItem><i className={`fa fa-${props.icon}`} aria-hidden="true"></i>
-{props.text}
+<ListItem ><i className={`fa fa-${props.icon}`} aria-hidden="true"></i>
+<Li onClick={() => props.selectUsage(props.text)}>{props.text}</Li>
 </ListItem>
 
 
