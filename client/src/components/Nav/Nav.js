@@ -31,16 +31,11 @@ font-family: 'Montserrat', sans-serif;
 
 }
 `
-const Img = styled.img`
-@media (max-width: 375px){
-margin-bottom: 0.5em;
-}
-`
+
 const Nav = ({children}) =>
 
  <Container>
   <A href="#"> <strong>Rosie</strong></A>
-    
       {children}
  </Container>
 

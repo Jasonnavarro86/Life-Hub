@@ -6,10 +6,10 @@ const ListItem = styled.div`
 @media (max-width: 375px){
     font-size: 20px;
     text-align: center;
-    color: red;
+    color: #333 ;
     font-family: 'Montserrat', sans-serif;
     margin: 1em;
-    border: 1px solid #3c639f;
+    border: 1px solid silver;
     padding: 0.5em;
     font-weight: bold;
 }
