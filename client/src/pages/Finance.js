@@ -32,9 +32,7 @@ render(){
       </Nav>
       <Modal text="Where to?">
        <A2>Go</A2>
-       
       </Modal>
-     
     </Wrapper>
     )
  }
