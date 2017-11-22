@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const Mbtn = styled.button`
 
-@media (max-width: 375px){
+@media (max-width: 414px){
 float:right;
 margin: 1em;
 }

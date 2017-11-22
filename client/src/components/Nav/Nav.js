@@ -10,14 +10,14 @@ margin: auto;
 clear:both;
 overflow: visible;
 background-color: #333;
-@media (max-width: 375px){
+@media (max-width: 414px){
 margin-bottom: 1em;
 }
 `
 
 const A = styled.a`
 cursor: pointer;
-@media (max-width: 375px){
+@media (max-width: 414px){
 width:100%;
 margin: auto;
 margin-left: 0.7em;

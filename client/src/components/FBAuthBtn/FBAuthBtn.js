@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 
 const LoginDiv = styled.div`
-@media (max-width: 375px){
+@media (max-width: 414px){
  background-color:#7e9dbb;
  min-width: 3em;
  width: 3;
@@ -21,7 +21,7 @@ class FBLogin extends React.Component{
     
       constructor (props, context) {
         super(props, context);
-
+        this.state = {}
       }
     
       render () {

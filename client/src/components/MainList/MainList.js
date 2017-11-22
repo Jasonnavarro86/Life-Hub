@@ -1,33 +1,35 @@
 import React from 'react'
-import styled from 'styled-components'
+import { MainListItem } from "./MainListItem"
 
 
-const ListItem = styled.ul`
-@media (max-width: 375px){
-    font-size: 20px;
-    text-align: center;
-    color: #333 ;
-    font-family: 'Montserrat', sans-serif;
-    margin: 1em;
-    border: 1px solid silver;
-    padding: 0.5em;
-    font-weight: bold;
+
+export class MainList extends React.Component{
+
+  constructor(props){
+    super(props)
+    this.state= {}
+  }
+
+
+  selectUsage = (selected) => {
+    if(this.props.name === ""){
+      alert("Please Login in order for Rosie to know who she is assisting today.")
+    }else{
+      const selectedJoined = selected.split(" ").join("").split(",").join("")
+      window.location.href ='/'+selectedJoined+ '/' + this.props.fId
+    }
+  }
+
+
+render(){
+  return(
+<div>
+<MainListItem text=" F i n a n c e" icon='credit-card' selectUsage={this.selectUsage}/>
+<MainListItem text=" G r o c e r y L i s t" icon='shopping-basket' selectUsage={this.selectUsage}/>
+<MainListItem text=" K i d s" icon='child' selectUsage={this.selectUsage}/>
+<MainListItem text=" C h o r e s" icon='briefcase' selectUsage={this.selectUsage}/>
+<MainListItem text=" A p p o i n t m e n t s" icon='calendar-check-o' selectUsage={this.selectUsage}/>
+</div>
+  )
+ }
 }
-`
-const Li = styled.li`
-@media (max-width: 375px){
-    background-color:red;
-    width:100%;
-    height:100%;
-    color:white;
-}
-`
-
-const MainListItem = (props) =>
-
-<ListItem ><i className={`fa fa-${props.icon}`} aria-hidden="true"></i>
-<Li onClick={() => props.selectUsage(props.text)}>{props.text}</Li>
-</ListItem>
-
-
-export default MainListItem

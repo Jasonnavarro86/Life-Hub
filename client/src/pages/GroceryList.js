@@ -1,7 +1,16 @@
 import React from 'react'
 import styled from 'styled-components'
 
+const A2= styled.button`
+
+@media (max-width: 414px){
+color:red;
+font-size:1em;
+font-family: 'Montserrat', sans-serif;
+}
+`
+
 export const GroceryList = () =>
 
-<h1>Grocery List</h1>
+<A2>Grocery List</A2>
 

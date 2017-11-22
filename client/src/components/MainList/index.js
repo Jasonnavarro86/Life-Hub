@@ -1,1 +1,2 @@
-export {default} from './MainList'
+export * from './MainList'
+export * from './MainListItem'
