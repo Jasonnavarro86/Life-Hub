@@ -4,12 +4,12 @@ import styled from 'styled-components'
 
 const ListItem = styled.div`
 @media (max-width: 375px){
-    font-size: 25px;
+    font-size: 20px;
     text-align: center;
-    color: #3c639f;
+    color: red;
     font-family: 'Montserrat', sans-serif;
     margin: 1em;
-    border: 1px solid;
+    border: 1px solid #3c639f;
     padding: 0.5em;
     font-weight: bold;
 }
@@ -17,7 +17,7 @@ const ListItem = styled.div`
 
 const MainListItem = (props) =>
 
-<ListItem>
+<ListItem><i className={`fa fa-${props.icon}`} aria-hidden="true"></i>
 {props.text}
 </ListItem>
 
