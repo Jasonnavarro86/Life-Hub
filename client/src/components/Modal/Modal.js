@@ -28,7 +28,7 @@ margin: 1em;
 
 export const Modal = (props) =>
 
-<ModalDiv className="modal fade loginModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+<ModalDiv className={`modal fade modal${props.mClass}`} tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div className="modal-dialog modal-lg">
     <ModalContainer className="modal-content">
     <H2>{props.text}</H2>

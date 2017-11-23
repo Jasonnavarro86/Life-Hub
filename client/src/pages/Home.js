@@ -34,7 +34,6 @@ export class Home extends React.Component{
 
 
   responseFacebook = (res) => {
-
     const user ={
       name: res.name, 
       fId: res.id, 
@@ -55,9 +54,9 @@ render(){
 
         <Wrapper>
           <Nav fId={this.props.match.params.id}>
-            <ModalBtn/>
+            <ModalBtn mClass="login" icon={true} />
           </Nav>
-            <Modal text="Please Login">
+            <Modal text="Please Login" mClass="login">
               <FBLogin size='sm' onClick={this.responseFacebook}/>
             </Modal>  
              <Img  className="rounded-circle" src="https://orig00.deviantart.net/a331/f/2017/269/b/6/toonheads__64_rosie_the_robot_by_cart00nman95-dbooao3.png" width="21%" alt="rosie"/>
