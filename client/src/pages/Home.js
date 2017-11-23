@@ -21,7 +21,7 @@ export class Home extends React.Component{
 
       this.state = {
       name : "",
-      fId: "",
+      fId: this.props.match.params.id,
       email:""
 
       }
@@ -54,7 +54,7 @@ render(){
     return(
 
         <Wrapper>
-          <Nav>
+          <Nav fId={this.props.match.params.id}>
             <ModalBtn/>
           </Nav>
             <Modal text="Please Login">

@@ -12,7 +12,7 @@ export class MainList extends React.Component{
 
 
   selectUsage = (selected) => {
-    if(this.props.name === ""){
+    if(this.props.fId === "" || this.props.fId === "undefined"){
       alert("Please Login in order for Rosie to know who she is assisting today.")
     }else{
       const selectedJoined = selected.split(" ").join("").split(",").join("")

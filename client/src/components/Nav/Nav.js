@@ -12,6 +12,7 @@ overflow: visible;
 background-color: #333;
 @media (max-width: 414px){
 margin-bottom: 1em;
+box-shadow: 2px 2px 1px #888888;
 }
 `
 
@@ -20,7 +21,6 @@ cursor: pointer;
 @media (max-width: 414px){
 width:100%;
 margin: auto;
-margin-left: 0.7em;
 color:red;
 text-shadow: 2px 2px white;
 display: inline;
@@ -30,15 +30,15 @@ font-size: 25px;
 text-decoration: none;
 font-family: 'Montserrat', sans-serif;
 font-family: 'Indie Flower', cursive;
-border-bottom: 0.5px solid white;
+padding: 1.4em;
 }
 `
 
-const Nav = ({children}) =>
+const Nav = (props) =>
 
  <Container>
-  <A href="/"> <strong>Rosie</strong></A>
-      {children}
+  <A href={`/Home/${props.fId}`}> <strong>Rosie</strong></A>
+      {props.children}
  </Container>
 
 export default Nav

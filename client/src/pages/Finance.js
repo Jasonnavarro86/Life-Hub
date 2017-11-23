@@ -27,7 +27,7 @@ export class Finance extends React.Component{
 render(){
     return(
     <Wrapper>
-      <Nav>
+      <Nav fId={this.props.match.params.id}>
        <ModalBtn/>
       </Nav>
       <Modal text="Where to?">

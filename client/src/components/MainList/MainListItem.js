@@ -19,8 +19,9 @@ const Li = styled.li`
     width: 100%;
     height: 100%;
     color: #ffffff;
-    padding: 1em;
-    border: 1px solid silver;
+    text-shadow: 2px 2px #333;
+    padding: 0.8em;
+    border: 0.5px solid grey;
     box-shadow: 10px 10px 5px #888888;
 }
 `
