@@ -5,7 +5,7 @@ import Nav from '../components/Nav'
 import FBLogin from '../components/FBAuthBtn'
 import { MainList } from '../components/MainList'
 import { Modal, ModalBtn } from '../components/Modal'
-
+import API from '../utils/API'
 
 
 const Img = styled.img`
@@ -28,10 +28,24 @@ export class Home extends React.Component{
 
   }
 
+  componentDidMount(){
+
+  }
+
+
   responseFacebook = (res) => {
-    console.log('hi', res)
-    this.setState({name: res.name, fId: res.id, email: res.email})
-    console.log("state", this.state)
+
+    const user ={
+      name: res.name, 
+      fId: res.id, 
+      email: res.email
+     }
+
+    API.saveOne('main', user)
+    .then(res1 =>  this.setState({name: res1.data.name, fId: res1.data.fId, email: res1.data.email}))
+     .then(res2 => console.log("state", this.state))
+     .catch(err => console.log(err))
+    
   }
 
  
@@ -43,7 +57,7 @@ render(){
           <Nav>
             <ModalBtn/>
           </Nav>
-            <Modal text="Login">
+            <Modal text="Please Login">
               <FBLogin size='sm' onClick={this.responseFacebook}/>
             </Modal>  
              <Img  className="rounded-circle" src="https://orig00.deviantart.net/a331/f/2017/269/b/6/toonheads__64_rosie_the_robot_by_cart00nman95-dbooao3.png" width="21%" alt="rosie"/>

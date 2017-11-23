@@ -22,13 +22,15 @@ width:100%;
 margin: auto;
 margin-left: 0.7em;
 color:red;
+text-shadow: 2px 2px white;
 display: inline;
 line-height: 2.2;
 text-align: center;
 font-size: 25px;
 text-decoration: none;
 font-family: 'Montserrat', sans-serif;
-font-weight: 700;
+font-family: 'Indie Flower', cursive;
+border-bottom: 0.5px solid white;
 }
 `
 
