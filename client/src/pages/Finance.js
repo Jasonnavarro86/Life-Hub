@@ -1,43 +1,28 @@
 import React from 'react'
-import styled from 'styled-components'
+// import styled from 'styled-components'
 import Wrapper from '../components/Wrapper'
-import Nav from '../components/Nav'
-import { Modal, ModalBtn } from '../components/Modal'
+import {PagesNav} from '../components/Nav'
+import { FindCreateUser } from '../components/DbUsers'
+// import API from '../utils/API'
 
-const A= styled.a`
 
-@media (max-width: 414px){
-color:red;
-font-size:1em;
-font-family: 'Montserrat', sans-serif;
-
-}
-`
 export class Finance extends React.Component{
 
     constructor(props){
         super(props)
         this.state = {
-            fId : this.props.match.params.id, 
-            name : '',
+            fId : this.props.match.params.id
 
         }
     }
 
+   
 
 render(){
     return(
     <Wrapper>
-        <Nav fId={this.props.match.params.id}>
-          <ModalBtn mClass="login" icon={true}/>
-        </Nav>
-         <Modal text="Where to?" mClass="login">
-           <ModalBtn mClass="logout" icon={false} text="Sign Out"/>
-         </Modal>
-         <Modal text="Sure You Want to Sign Out?" mClass="logout">
-          <A href={`/`}>Yes</A>
-          <ModalBtn mClass="logout" icon={false} text="No"/>
-        </Modal>
+     <PagesNav fId={this.state.fId}/>
+      <FindCreateUser fId={this.state.fId} path="finance"/>
     </Wrapper>
     )
  }

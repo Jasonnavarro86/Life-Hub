@@ -1,5 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+import Wrapper from '../components/Wrapper'
+import {PagesNav} from '../components/Nav'
+import { FindCreateUser } from '../components/DbUsers'
 
 const A2= styled.button`
 
@@ -9,7 +12,27 @@ font-size:1em;
 font-family: 'Montserrat', sans-serif;
 }
 `
-export const Appointments = () =>
 
-<A2>Appointments</A2>
-
+export class Appointments extends React.Component{
+  
+      constructor(props){
+          super(props)
+          this.state = {
+              fId : this.props.match.params.id, 
+              name : '',
+  
+          }
+      }
+  
+  
+  render(){
+      return(
+      <Wrapper>
+       <PagesNav fId={this.state.fId}/>
+       <FindCreateUser fId={this.state.fId} path="appointments"/>
+       <A2>Appointments</A2> 
+      </Wrapper>
+      )
+   }
+  }
+  

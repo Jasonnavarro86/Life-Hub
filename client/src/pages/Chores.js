@@ -1,5 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+import Wrapper from '../components/Wrapper'
+import {PagesNav} from '../components/Nav'
+import { FindCreateUser } from '../components/DbUsers'
 
 const A2= styled.button`
 
@@ -10,7 +13,28 @@ font-family: 'Montserrat', sans-serif;
 }
 `
 
-export const Chores = () =>
+export class Chores extends React.Component{
+  
+      constructor(props){
+          super(props)
+          this.state = {
+              fId : this.props.match.params.id, 
+              name : '',
+  
+          }
+      }
+  
+  
+  render(){
+      return(
+      <Wrapper>
+       <PagesNav fId={this.state.fId}/>
+       <FindCreateUser fId={this.state.fId} path="chores"/>
+       <A2>Chores</A2> 
+      </Wrapper>
+      )
+   }
+  }
+  
 
-<A2>Chores</A2>
 

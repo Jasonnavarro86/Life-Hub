@@ -2,18 +2,18 @@ import axios from 'axios'
 
 export default {
 
-    getAll: function(db){
-        return axios.get('/api/' + db)
+    getAll: function(path){
+        return axios.get('/api/' + path)
     },
-    getOne: function(db, id) {
-        return axios.get('/api/' +db +'/'+ id);
+    getOne: function(path, id) {
+        return axios.get('/api/' + path +'/'+ id);
     },
     
-    deleteOne: function(db, id) {
-        return axios.delete('/api/' +db +'/'+ id);
+    deleteOne: function(path, id) {
+        return axios.delete('/api/' + path +'/'+ id);
     },
   
-    saveOne: function(db, Data) {
-        return axios.post('/api/main', Data);
+    saveOne: function(path, Data) {
+        return axios.post('/api/' + path, Data);
     }
 }

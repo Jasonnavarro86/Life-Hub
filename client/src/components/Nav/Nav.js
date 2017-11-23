@@ -34,11 +34,11 @@ padding: 1.4em;
 }
 `
 
-const Nav = (props) =>
+export const Nav = (props) =>
 
  <Container>
   <A href={`/Home/${props.fId}`}> <strong>Rosie</strong></A>
       {props.children}
  </Container>
 
-export default Nav
+

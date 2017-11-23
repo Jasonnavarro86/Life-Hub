@@ -5,7 +5,7 @@ import Footer from '../Footer'
 const WrapperDiv = styled.div`
 min-height: 100vh;
 min-width: 100vw;
-overflow: hidden; 
+overflow: auto; 
 clear: both;
 `
 

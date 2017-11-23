@@ -10,7 +10,7 @@ module.exports = {
     },
     findByfId: function(req,res){
         db.Finance 
-        .findById(req.params.id)
+        .findOne({fId: req.params.id})
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err))
     },
