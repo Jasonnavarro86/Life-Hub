@@ -8,15 +8,16 @@ module.exports = {
         .catch(err => res.status(422).json(err))
     },
     findByfId: function(req,res){
-        db.Appointments 
+        db.Main 
         .findOne({fId: req.params.id})
+        .populate("Appointment")
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err))
     },
     create : function(req, res){
         db.Appointments
         .create(req.body)
-        .then(dbModel => res.json(dbModel))
+        .then(dbModel => {db.Main.findOneAndUpdate({ fId : dbModel.fId}, { $push: { "appointments": dbModel._id }} , { new: true }, function(err, data){res.json(data)}) })
         .catch(err => res.status(422).json(err))
     },
     update: function(req, res){
