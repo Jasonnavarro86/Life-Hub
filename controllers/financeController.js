@@ -11,7 +11,7 @@ module.exports = {
     findByfId: function(req,res){
         db.Main 
         .findOne({fId: req.params.id})
-        .populate("Finance")
+        .populate("finance")
         .then(dbModel => res.json(dbModel))
         .catch(err => res.status(422).json(err))
     },

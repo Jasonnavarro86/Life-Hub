@@ -5,12 +5,13 @@ const financeSchema = new Schema({
       
     fId: { type: Number, required: true },
     incomeName: String,
-    incomeAmount: Number,
+    incomeAmount: {type: Number, default: 0},
     expenseName:String,
-    expenseAmount:Number,
+    expenseAmount:{type: Number, default: 0},
     month: String,
     day: String,
-    year: String
+    year: String,
+    date: { type: Date, default: Date.now } ,
 
 })
 
