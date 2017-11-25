@@ -2,15 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import Wrapper from '../components/Wrapper'
 import {PagesNav} from '../components/Nav'
-import { FindCreateUser } from '../components/DbUsers'
 
-const A2= styled.button`
 
-@media (max-width: 414px){
-color:red;
-font-size:1em;
-font-family: 'Montserrat', sans-serif;
-}
+
+const H1 = styled.h1`
+width: 100%;
+height: 100%;
+color: silver;
+text-shadow: 2px 2px #333;
 `
 
 export class Chores extends React.Component{
@@ -29,8 +28,7 @@ export class Chores extends React.Component{
       return(
       <Wrapper>
        <PagesNav fId={this.state.fId}/>
-       <FindCreateUser fId={this.state.fId} path="chores"/>
-       <A2>Chores</A2> 
+       <H1 className="text-center">Chores</H1> 
       </Wrapper>
       )
    }

@@ -4,8 +4,14 @@ const Schema = mongoose.Schema
 const financeSchema = new Schema({
       
     fId: { type: Number, required: true },
-    input: String,
-    date: { type: Date, default: Date.now }  
+    incomeName: String,
+    incomeAmount: Number,
+    expenseName:String,
+    expenseAmount:Number,
+    month: String,
+    day: String,
+    year: String
+
 })
 
 const Finance = mongoose.model("Finance", financeSchema)

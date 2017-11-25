@@ -28,11 +28,6 @@ export class Home extends React.Component{
 
   }
 
-  componentDidMount(){
-
-  }
-
-
   responseFacebook = (res) => {
     const user ={
       name: res.name, 
@@ -48,6 +43,7 @@ export class Home extends React.Component{
             .then(res2 => console.log("state", this.state))
         }else {
            console.log("exist", res.data);
+           this.setState({name: res.data.name, fId: res.data.fId, email: res.data.email})
         }
       })
     .catch(err => console.log(err))  
@@ -60,14 +56,13 @@ render(){
 
         <Wrapper>
           <Nav fId={this.props.match.params.id}>
-            <ModalBtn mClass="login" icon={true} />
+            <ModalBtn mClass="login" icon={true} float="float-right" />
               <Modal text="Please Login" mClass="login">
                 <FBLogin size='sm' onClick={this.responseFacebook}/>
               </Modal>  
-          </Nav>
-            
-             <Img  className="rounded-circle" src="https://orig00.deviantart.net/a331/f/2017/269/b/6/toonheads__64_rosie_the_robot_by_cart00nman95-dbooao3.png" width="21%" alt="rosie"/>
-           <MainList name={this.state.name} fId={this.state.fId}/>
+          </Nav>   
+          <Img  className="rounded-circle" src="https://orig00.deviantart.net/a331/f/2017/269/b/6/toonheads__64_rosie_the_robot_by_cart00nman95-dbooao3.png" width="21%" alt="rosie"/>
+          <MainList name={this.state.name} fId={this.state.fId}/>
         </Wrapper>
         
           )

@@ -17,7 +17,7 @@ color:#7e9dbb;
 export const PagesNav = (props) =>
 
 <Nav fId={props.fId} pages={true}>
-  <ModalBtn mClass="direct" icon={true}/>
+  <ModalBtn mClass="direct" icon={true} float="float-right"/>
     <Modal text="" mClass="direct">
       <A className="btn btn-secondary btn-sm" href={`/Home/${props.fId}`}>Dashboard</A>
       
