@@ -11,6 +11,7 @@ const financeSchema = new Schema({
     month: String,
     day: String,
     year: String,
+    incomeBool: Boolean,
     date: { type: Date, default: Date.now } ,
 
 })

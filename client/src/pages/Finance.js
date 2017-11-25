@@ -10,17 +10,47 @@ import Form from '../components/Form'
 const Div1 = styled.div`
 margin:auto;
 margin-left:2em;
+font-family: 'Montserrat', sans-serif;
 `
 const Div2 = styled.div`
 margin:auto;
 text-align: center;
+font-family: 'Montserrat', sans-serif;
 `
 const Div3 = styled.div`
 `
-const Div4 = styled.div`
-margin-bottom:0.5em;
+const TotalSum = styled.div`
+margin-bottom:1em;
+color:#333;
+font-size:1.3em;
 `
+const Delete = styled.button`
+float:right;
+color:white;
+`
+const ExpenseDiv = styled.div`
+margin-bottom:0.5em;
+background-color:silver;
+color:white;
+font-family: 'Montserrat', sans-serif;
+clear:both;
+`
+const IncomeDiv = styled.div`
+margin-bottom:0.5em;
+background-color:silver;
+color:white;
+font-family: 'Montserrat', sans-serif;
+clear:both;
+`
+const PList = styled.p`
+line-height:1.7;
 
+`
+const Title = styled.div`
+margin:1em 0em;
+font-family: 'Montserrat', sans-serif;
+font-size:1.2em;
+`
 const P = styled.p`
 border-bottom: 1px solid silver;
 `
@@ -85,17 +115,27 @@ export class Finance extends React.Component{
 
  formSubmit = (id) =>{
 
-         id ={
-           fId : this.state.fId,
-           incomeName: this.upperCaseFirst(document.getElementById(`Income1`).value),
-           incomeAmount: parseFloat(document.getElementById(`Income2`).value),
-           expenseName: this.upperCaseFirst(document.getElementById(`Expense1`).value),
-           expenseAmount: parseFloat(document.getElementById(`Expense2`).value),
-           month: this.state.currentMonth,
-           day: this.state.currentDay,
-           year: this.state.currentYear
-           }
-
+  if(id === "Income"){
+    id ={
+      fId : this.state.fId,
+      incomeName: this.upperCaseFirst(document.getElementById(`Income1`).value),
+      incomeAmount: parseFloat(document.getElementById(`Income2`).value),
+      month: this.state.currentMonth,
+      day: this.state.currentDay,
+      year: this.state.currentYear,
+      incomeBool: true
+      }
+    }else{
+      id ={
+        fId : this.state.fId,
+        expenseName: this.upperCaseFirst(document.getElementById(`Expense1`).value),
+        expenseAmount: parseFloat(document.getElementById(`Expense2`).value),
+        month: this.state.currentMonth,
+        day: this.state.currentDay,
+        year: this.state.currentYear,
+        incomeBool: false
+        }
+    }
         API.saveOne("finance", id)
         .then(res => API.getOne('finance', id.fId)
           .then(res2 => { this.setState({finance: res2.data.finance})}
@@ -111,36 +151,37 @@ export class Finance extends React.Component{
             })
         }
 
-
 render(){
+
+  
     console.log(this.state);
     return(
     <Wrapper>
      <PagesNav fId={this.state.fId}/>
        <H1 className="text-center">F I N A N C E</H1>
-        <Div1 className="row InputForms">
-          <ModalBtn mClass="income" icon={false} text="Enter New Income" float={'col-10'}/>
-          <Modal text="Enter Income" mClass="income">
-            <Form id="Income" text1='Job Name' text2='Amount' submit={this.formSubmit}/>
-          </Modal>
-          <ModalBtn mClass="Expense" icon={false} text="Enter New Expense" float={'col-10'}/>
-          <Modal text="Enter Expense" mClass="Expense">
-            <Form id="Expense" text1='Expense Name' text2='Amount' submit={this.formSubmit}/>
-          </Modal>
-        </Div1>
-
-        
-        <div className="col-12 text-center">{this.state.currentMonth} {this.state.currentYear} <br/> Income - Expenses = {this.state.incomeSum - this.state.expenseSum}</div>
+        <Title className="col-12 text-center">{this.state.currentMonth} {this.state.currentYear}</Title>
+        <TotalSum className="col-12 text-center">   Current Budget = {this.state.incomeSum - this.state.expenseSum}</TotalSum>
+          <Div1 className="row InputForms">
+           <ModalBtn mClass="income" icon={false} text="Enter New Income" float={'col-10'}/>
+            <Modal text="Enter Income" mClass="income">
+              <Form id="Income" text1='Job Name' text2='Amount' submit={this.formSubmit}/>
+            </Modal>
+           <ModalBtn mClass="Expense" icon={false} text="Enter New Expense" float={'col-10'}/>
+            <Modal text="Enter Expense" mClass="Expense">
+              <Form id="Expense" text1='Expense Name' text2='Amount' submit={this.formSubmit}/>
+            </Modal>
+          </Div1>
+          <br/>
           <Div2 className="row Income/ExpenseColumns">
             <Div3 className="col-6">
               <P>Income</P>
-              <p>Total: {this.state.incomeSum}</p>
-              {this.state.finance.map(income => ( <Div4 className='btn-success rounded'>{income.incomeName} {income.incomeAmount} </Div4>))}
+               <p>Total: {this.state.incomeSum}</p>
+                {this.state.finance.map(income => {if(!income.incomeAmount == 0){return(<IncomeDiv className='rounded'><PList>{income.incomeName} {income.incomeAmount }<Delete>X</Delete></PList> </IncomeDiv>)}})}
             </Div3>
             <Div3 className="col-6">
               <P >Expense</P>
-              <p>Total: {this.state.expenseSum}</p>
-              {this.state.finance.map(expense => ( <Div4 className='btn-danger rounded'>{expense.expenseName}  {expense.expenseAmount} </Div4>))}
+               <p>Total: {this.state.expenseSum}</p>
+                {this.state.finance.map(expense =>  {if(!expense.expenseAmount == 0){return( <ExpenseDiv className='rounded'><PList className="">{expense.expenseName}  {expense.expenseAmount}<Delete>X</Delete></PList></ExpenseDiv>)}})}
             </Div3>
           </Div2>
     </Wrapper>
