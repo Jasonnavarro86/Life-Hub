@@ -16,7 +16,6 @@ margin:auto;
 text-align: center;
 `
 const Div3 = styled.div`
-margin-left:1.5em;
 `
 const Div4 = styled.div`
 margin-bottom:0.5em;
@@ -44,7 +43,7 @@ export class Finance extends React.Component{
             incomeSum: 0,
             expenseSum:0,
             difference:0,
-            currentMonth: date.getMonth(),
+            currentMonth: this.transformMonth(date.getMonth()),
             currentDay: date.getDate(),
             currentYear:date.getFullYear()
         }
@@ -66,6 +65,7 @@ export class Finance extends React.Component{
 
       }
 
+
  upperCaseFirst = (string) => {
      if(!string == ""){
         const first = string.split('')
@@ -75,24 +75,31 @@ export class Finance extends React.Component{
      }
  }
 
+ transformMonth = (index) =>{
+    const months = ["January", "February", "March", "April", "May", "June", "July",
+    "August", "September", "October", "November", "December"];
+
+    return months[index]
+ }
+
+
  formSubmit = (id) =>{
-       const date = new Date();       
+
          id ={
            fId : this.state.fId,
            incomeName: this.upperCaseFirst(document.getElementById(`Income1`).value),
            incomeAmount: parseFloat(document.getElementById(`Income2`).value),
            expenseName: this.upperCaseFirst(document.getElementById(`Expense1`).value),
            expenseAmount: parseFloat(document.getElementById(`Expense2`).value),
-           month: date.getMonth(),
-           day: date.getDate(),
-           year: date.getFullYear()
+           month: this.state.currentMonth,
+           day: this.state.currentDay,
+           year: this.state.currentYear
+           }
 
-    }
- 
         API.saveOne("finance", id)
         .then(res => API.getOne('finance', id.fId)
-          .then(res2 => { this.setState({finance: res2.data.finance})
-         }))
+          .then(res2 => { this.setState({finance: res2.data.finance})}
+         ))
              .then(res3 => { 
                 let iSum = 0; 
                 let eSum = 0;
@@ -100,11 +107,10 @@ export class Finance extends React.Component{
                    iSum += this.state.finance[i].incomeAmount;
                    eSum += this.state.finance[i].expenseAmount;
                     this.setState({incomeSum : iSum, expenseSum: eSum})
-              }
-           })
-    
-    
- }
+              } 
+            })
+        }
+
 
 render(){
     console.log(this.state);
@@ -122,13 +128,14 @@ render(){
             <Form id="Expense" text1='Expense Name' text2='Amount' submit={this.formSubmit}/>
           </Modal>
         </Div1>
+
         
-        <div className="col-10 text-center">Income - Expenses = {this.state.incomeSum - this.state.expenseSum}</div>
+        <div className="col-12 text-center">{this.state.currentMonth} {this.state.currentYear} <br/> Income - Expenses = {this.state.incomeSum - this.state.expenseSum}</div>
           <Div2 className="row Income/ExpenseColumns">
-            <Div3 className="col-4">
+            <Div3 className="col-6">
               <P>Income</P>
               <p>Total: {this.state.incomeSum}</p>
-              {this.state.finance.map(income => ( <Div4 className='btn-danger rounded'>{income.incomeName} {income.incomeAmount} </Div4>))}
+              {this.state.finance.map(income => ( <Div4 className='btn-success rounded'>{income.incomeName} {income.incomeAmount} </Div4>))}
             </Div3>
             <Div3 className="col-6">
               <P >Expense</P>
