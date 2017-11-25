@@ -10,6 +10,7 @@ import Form from '../components/Form'
 const Div1 = styled.div`
 margin:auto;
 margin-left:2em;
+
 `
 const Div2 = styled.div`
 margin:auto;
