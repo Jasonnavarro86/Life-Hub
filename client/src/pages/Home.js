@@ -56,7 +56,7 @@ render(){
 
         <Wrapper>
           <Nav fId={this.props.match.params.id}>
-            <ModalBtn mClass="login" icon={true} float="float-right" />
+            <ModalBtn btn="btn-secondary" mClass="login" icon={true} float="float-right" />
               <Modal text="Please Login" mClass="login">
                 <FBLogin size='sm' onClick={this.responseFacebook}/>
               </Modal>  

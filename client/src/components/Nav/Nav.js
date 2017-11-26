@@ -20,7 +20,6 @@ const A = styled.a`
 cursor: pointer;
 @media (max-width: 414px){
 width:100%;
-margin: auto;
 color:red;
 text-shadow: 2px 2px white;
 display: inline;
@@ -28,7 +27,6 @@ line-height: 2.2;
 text-align: center;
 font-size: 25px;
 text-decoration: none;
-font-family: 'Montserrat', sans-serif;
 font-family: 'Indie Flower', cursive;
 padding: 1.4em;
 }
@@ -38,7 +36,7 @@ export const Nav = (props) =>
 
  <Container>
   <A href={`/Home/${props.fId}`}> <strong>Rosie</strong></A>
-      {props.children}
+    {props.children}
  </Container>
 
 

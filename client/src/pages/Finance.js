@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import Wrapper from '../components/Wrapper'
 import { PagesNav} from '../components/Nav'
 import API from '../utils/API'
-import {Modal, ModalBtn} from '../components/Modal'
+import {Modal} from '../components/Modal'
 import Form from '../components/Form'
 
 
@@ -12,7 +12,6 @@ const H1 = styled.h1`
 width: 100%;
 height: 100%;
 color: #333;
-
 }
 `
 const Title = styled.div`
@@ -26,17 +25,14 @@ color: #333;
 const TotalSum = styled.div`
 @media (max-width: 414px){
 margin-bottom:1em;
-font-size:1.6em;
+font-size:1em;
 color:#7e9dbb;
-border: 1px solid #7e9dbb;
-width:70%;
-margin-left:2.5em;
+font-family: 'Montserrat', sans-serif;
 }
 `
 const Div1 = styled.div`
 @media (max-width: 414px){
 margin:auto;
-margin-left:2em;
 font-family: 'Montserrat', sans-serif;
 }
 `
@@ -47,7 +43,8 @@ text-align: center;
 font-family: 'Montserrat', sans-serif;
 }
 `
-const Div3 = styled.div`
+const Mbtn = styled.button`
+margin:auto;
 `
 
 const Delete = styled.button`
@@ -77,7 +74,6 @@ clear:both;
 const PList = styled.p`
 @media (max-width: 414px){
 line-height:1.7;
-color:#7e9dbb;
 color:#3c639f;
 }
 `
@@ -187,29 +183,29 @@ render(){
      <PagesNav fId={this.state.fId}/>
        <H1 className="text-center">F I N A N C E</H1>
         <Title className="col-12 text-center">{this.state.currentMonth} {this.state.currentYear}</Title>
-        <TotalSum className="col-12 text-center">   Current Balance <br/>{this.state.incomeSum - this.state.expenseSum}</TotalSum>
+         <TotalSum className="col-12 text-center">CURRENT REMAINDER <br/>{this.state.incomeSum - this.state.expenseSum}</TotalSum>
           <Div1 className="row InputForms">
-           <ModalBtn mClass="income" icon={false} text="Enter New Income" float={'col-5'}/>
+            <Mbtn data-toggle="modal" data-target={`.modalincome`}  className='col-5 btn btn-md'>Enter New Expense</Mbtn>
             <Modal text="Enter Income" mClass="income">
               <Form id="Income" text1='Job Name' text2='Amount' submit={this.formSubmit}/>
             </Modal>
-           <ModalBtn mClass="Expense" icon={false} text="Enter New Expense" float={'col-5'}/>
+           <Mbtn data-toggle="modal" data-target={`.modalExpense`}   className='col-5 btn btn-md'>Enter New Expense</Mbtn>
             <Modal text="Enter Expense" mClass="Expense">
               <Form id="Expense" text1='Expense Name' text2='Amount' submit={this.formSubmit}/>
             </Modal>
           </Div1>
           <br/>
           <Div2 className="row Income/ExpenseColumns">
-            <Div3 className="col-6">
+            <div className="col-6">
               <P>Income</P>
                <p>Total: {this.state.incomeSum}</p>
                 {this.state.finance.map(income => {if(!income.incomeAmount == 0){return(<IncomeDiv className='rounded'><PList>{income.incomeName} ${income.incomeAmount }<Delete> &times;</Delete></PList></IncomeDiv>)}})}
-            </Div3>
-            <Div3 className="col-6">
+            </div>
+            <div className="col-6">
               <P >Expense</P>
                <p>Total: {this.state.expenseSum}</p>
                 {this.state.finance.map(expense =>  {if(!expense.expenseAmount == 0){return( <ExpenseDiv className='rounded'><PList className="">{expense.expenseName} ${expense.expenseAmount}<Delete>&times;</Delete></PList></ExpenseDiv>)}})}
-            </Div3>
+            </div>
           </Div2>
     </Wrapper>
     )
