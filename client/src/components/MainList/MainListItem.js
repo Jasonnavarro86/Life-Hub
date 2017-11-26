@@ -8,9 +8,10 @@ const ListItem = styled.ul`
     text-align: center;
     color: #333 ;
     font-family: 'Montserrat', sans-serif;
-    margin: 1em;
+    margin: auto;
     padding: 0.5em;
     font-weight: bold;
+    width:85%;
 }
 `
 const Li = styled.li`
