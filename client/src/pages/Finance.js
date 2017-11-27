@@ -7,33 +7,32 @@ import {Modal} from '../components/Modal'
 import Form from '../components/Form'
 
 
-const H1 = styled.h1`
+const H1 = styled.h3`
 @media (max-width: 414px){
 width: 100%;
 height: 100%;
-color: #333;
-}
-`
-const Title = styled.div`
-@media (max-width: 414px){
-margin:1em 0em;
+color:#333;
+margin-top:1.5em;
 font-family: 'Montserrat', sans-serif;
-font-size:1.4em;
-color: #333;
+clear:both;
 }
 `
-const TotalSum = styled.div`
+const Title = styled.p`
 @media (max-width: 414px){
-margin-bottom:1em;
-font-size:1em;
+font-family: 'Montserrat', sans-serif;
+color: #333;
 color:#7e9dbb;
-font-family: 'Montserrat', sans-serif;
+margin-bottom:1em;
+font-size:1.4;
 }
 `
+
 const Div1 = styled.div`
 @media (max-width: 414px){
 margin:auto;
 font-family: 'Montserrat', sans-serif;
+background-color:#7e9dbb;
+padding:1em;
 }
 `
 const Div2 = styled.div`
@@ -41,47 +40,126 @@ const Div2 = styled.div`
 margin:auto;
 text-align: center;
 font-family: 'Montserrat', sans-serif;
-}
-`
-const Mbtn = styled.button`
-margin:auto;
-`
+background-color:white;
+color:#333;
+padding:1em;
+background-color:#7e9dbb;
 
-const Delete = styled.button`
-@media (max-width: 414px){
-float:right;
-color:white;
 }
 `
-const ExpenseDiv = styled.div`
+const Div3 = styled.div`
 @media (max-width: 414px){
-margin-bottom:0.5em;
-background-color:silver;
-color:white;
-font-family: 'Montserrat', sans-serif;
-clear:both;
-}
-`
-const IncomeDiv = styled.div`
-@media (max-width: 414px){
-margin-bottom:0.5em;
-background-color:silver;
-color:white;
-font-family: 'Montserrat', sans-serif;
-clear:both;
-}
-`
-const PList = styled.p`
-@media (max-width: 414px){
-line-height:1.7;
-color:#3c639f;
+
+position:relative;
+margin-top:-1em;
+border-left: 1px solid #333;
+border-top: 1px solid #333;
+border-right: 1px solid #333;
+border-bottom: 1px solid #333;
+background-color:white;
 }
 `
 const P = styled.p`
 @media (max-width: 414px){
+font-size: 1.6em;
+color:#333;
+font-family: 'Montserrat', sans-serif;
 border-bottom: 1px solid silver;
+padding:0.2em;
+
 }
 `
+const ItemList = styled.p`
+@media (max-width: 414px){
+font-family: 'Montserrat', sans-serif;
+color:#333;
+font-size:1.1em;
+width:83%;
+line-height:1.8;
+margin:auto;
+}
+`
+const ColTotal = styled.p`
+@media (max-width: 414px){
+color:white;
+font-size: 1.4em;
+color:#7e9dbb;
+font-weight:900;
+color:black;
+
+}
+`
+const Div4 = styled.div`
+@media (max-width: 414px){
+margin:auto;
+text-align: center;
+font-family: 'Montserrat', sans-serif;
+background-color:white;
+color:#333;
+padding:0.5em;
+
+}
+`
+const Mbtn = styled.button`
+color:#7e9dbb;
+background-color:#333;
+font-family: 'Montserrat', sans-serif;
+font-size: 0.8em;
+padding:1em;
+margin:auto;
+border: 1px solid #7e9dbb;
+
+`
+
+const ExpenseDiv = styled.div`
+@media (max-width: 414px){
+  margin:auto;
+  margin-bottom:1em; 
+  clear:both;
+  position:relative;
+}
+`
+const IncomeDiv = styled.div`
+@media (max-width: 414px){
+  padding:0em;
+  margin:auto;
+  margin-bottom:1em; 
+  clear:both;
+  position:relative;
+}
+`
+const Delete = styled.button`
+@media (max-width: 414px){
+position:absolute;
+font-family: 'Montserrat', sans-serif;
+right:0px;
+top:0px;
+color:white;
+background-color:#333;
+}
+`
+const TotalSum = styled.div`
+@media (max-width: 414px){
+font-size:1.4em;
+color:#333;
+padding-top:1em;
+padding-bottom:1em;
+font-family: 'Montserrat', sans-serif;
+width:100%;
+margin:auto;
+background-color:white;
+background-color:#333;
+color:  #7e9dbb;
+
+border-left: 16px solid white;
+border-top: 16px solid  white;
+border-right: 16px solid  white;
+border-bottom: 16px solid  white;
+
+
+}
+`
+
 
 
 export class Finance extends React.Component{
@@ -170,8 +248,8 @@ export class Finance extends React.Component{
                    iSum += this.state.finance[i].incomeAmount;
                    eSum += this.state.finance[i].expenseAmount;
                     this.setState({incomeSum : iSum, expenseSum: eSum})
-              } 
-            })
+            } 
+          })
         }
 
 render(){
@@ -183,30 +261,47 @@ render(){
      <PagesNav fId={this.state.fId}/>
        <H1 className="text-center">F I N A N C E</H1>
         <Title className="col-12 text-center">{this.state.currentMonth} {this.state.currentYear}</Title>
-         <TotalSum className="col-12 text-center">CURRENT REMAINDER <br/>{this.state.incomeSum - this.state.expenseSum}</TotalSum>
-          <Div1 className="row InputForms">
-            <Mbtn data-toggle="modal" data-target={`.modalincome`}  className='col-5 btn btn-md'>Enter New Expense</Mbtn>
+        <Div1 className="row InputForms">
+            <Mbtn data-toggle="modal" data-target={`.modalincome`} className='col-12 btn btn-sm'>Enter New Income</Mbtn>
             <Modal text="Enter Income" mClass="income">
               <Form id="Income" text1='Job Name' text2='Amount' submit={this.formSubmit}/>
             </Modal>
-           <Mbtn data-toggle="modal" data-target={`.modalExpense`}   className='col-5 btn btn-md'>Enter New Expense</Mbtn>
+          </Div1>
+          <Div2 className="row Income/ExpenseColumns">
+            <Div3 className="col-12">
+              <P>Income</P>
+              {this.state.finance.map(income => {if(!income.incomeAmount == 0){return(<IncomeDiv className='rounded'><ItemList>{income.incomeName} ${income.incomeAmount }</ItemList> <Delete className="btn btn-sm">&times;</Delete></IncomeDiv>)}})}
+               <ColTotal>Total: ${this.state.incomeSum}</ColTotal>
+              </Div3>
+          </Div2>
+          <Div1 className="row InputForms">
+              <Mbtn data-toggle="modal" data-target={`.modalExpense`} className='col-12 btn btn-sm'>Enter New Expense</Mbtn>
             <Modal text="Enter Expense" mClass="Expense">
               <Form id="Expense" text1='Expense Name' text2='Amount' submit={this.formSubmit}/>
             </Modal>
-          </Div1>
-          <br/>
-          <Div2 className="row Income/ExpenseColumns">
-            <div className="col-6">
-              <P>Income</P>
-               <p>Total: {this.state.incomeSum}</p>
-                {this.state.finance.map(income => {if(!income.incomeAmount == 0){return(<IncomeDiv className='rounded'><PList>{income.incomeName} ${income.incomeAmount }<Delete> &times;</Delete></PList></IncomeDiv>)}})}
-            </div>
-            <div className="col-6">
-              <P >Expense</P>
-               <p>Total: {this.state.expenseSum}</p>
-                {this.state.finance.map(expense =>  {if(!expense.expenseAmount == 0){return( <ExpenseDiv className='rounded'><PList className="">{expense.expenseName} ${expense.expenseAmount}<Delete>&times;</Delete></PList></ExpenseDiv>)}})}
-            </div>
-          </Div2>
+            </Div1>
+            <Div2 className="row Income/ExpenseColumns">
+            <Div3 className="col-12">
+              <P>Expenses</P>
+                 {this.state.finance.map(expense =>  {if(!expense.expenseAmount == 0){return( <ExpenseDiv className='rounded'><ItemList>{expense.expenseName} ${expense.expenseAmount}</ItemList> <Delete className="btn btn-sm">&times;</Delete></ExpenseDiv>)}})}
+                <ColTotal>Total: ${this.state.expenseSum}</ColTotal>
+            </Div3>
+            </Div2>
+            
+          
+           
+            <TotalSum className="col-12 text-center"> DIFFERENCE <br/>${this.state.incomeSum - this.state.expenseSum}</TotalSum>
+            
+            
+            <Div1 className="row">
+            <Mbtn className='col-12 btn btn-sm'>Enter Bills</Mbtn>
+            </Div1>
+            <Div2 className="row BillColumns">
+             <Div3 className="col-12">
+             <P>BILLS</P>
+             </Div3>
+           </Div2>
+           
     </Wrapper>
     )
  }

@@ -19,21 +19,22 @@ font-family: 'Montserrat', sans-serif;
 }
 `
 const ModalContainer= styled.div`
-
 @media (max-width: 414px){
 padding: 2em;
 margin: 1em;
 }
 `
 
+
 export const Modal = (props) =>
 
 <ModalDiv className={`modal fade modal${props.mClass}`} tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
   <div className="modal-dialog modal-lg">
     <ModalContainer className="modal-content">
-      <H2>{props.text}</H2>
+       <H2>{props.text}</H2>
        {props.children}
     </ModalContainer>
   </div>
+ 
 </ModalDiv>
 

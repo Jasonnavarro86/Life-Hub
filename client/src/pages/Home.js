@@ -58,10 +58,10 @@ render(){
           <Nav fId={this.props.match.params.id}>
             <ModalBtn btn="btn-secondary" mClass="login" icon={true} float="float-right" />
               <Modal text="Please Login" mClass="login">
-                <FBLogin size='sm' onClick={this.responseFacebook}/>
+                <FBLogin mClass="login" size='sm' onClick={this.responseFacebook}/>
               </Modal>  
           </Nav>   
-          <Img  className="rounded-circle" src="https://orig00.deviantart.net/a331/f/2017/269/b/6/toonheads__64_rosie_the_robot_by_cart00nman95-dbooao3.png" width="21%" alt="rosie"/>
+          <Img  className="rounded-circle" src="http://www.imagefully.com/wp-content/uploads/2015/08/Beautiful-Family-Logo-Picture.jpg" width="21%" alt="rosie"/>
           <MainList name={this.state.name} fId={this.state.fId}/>
         </Wrapper>
         

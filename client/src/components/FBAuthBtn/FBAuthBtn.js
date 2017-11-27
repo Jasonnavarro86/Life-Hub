@@ -36,6 +36,8 @@ class FBLogin extends React.Component{
                            version="v2.5"
                            className={`facebook-login btn btn-${this.props.size} dropdown-item`}
                            buttonText=" FaceBook"
+                           data-toggle="modal" 
+                           data-target={`.modal${this.props.mClass}`}
                            > 
                            <i className="fa fa-facebook-square" aria-hidden="true"> </i>
                            </FacebookLogin>            

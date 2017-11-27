@@ -4,10 +4,8 @@ import styled from 'styled-components'
 
 const Foot = styled.div`
 @media (max-width: 414px){
-    margin:1em;
-    color:red;
-    text-shadow: 2px 2px silver;
-    display: inline;
+    margin-top:1em;
+    color:#7e9dbb;
     text-align: center;
     font-size: 18px;
     font-family: 'Indie Flower', cursive;
@@ -17,7 +15,7 @@ const Foot = styled.div`
 const Footer = () =>
 
 <Foot>
-<p> &copy; Rosie 2017</p>
+<p> &copy; Family Hub 2017</p>
 </Foot>
 
 export default Footer

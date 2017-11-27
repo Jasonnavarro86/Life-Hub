@@ -18,7 +18,7 @@ const Form = (props) =>
     <label for={`${props.id}2`}>{props.text2}</label>
     <input type="email" className="form-control text2" id={`${props.id}2`} aria-describedby="emailHelp" placeholder="0.00"/>
   </div>
-  <button type="submit" className="btn btn-danger btn-sm" onClick={(e) => {e.preventDefault(); props.submit(props.id)}}>Submit</button>
+  <button type="submit" className="btn btn-light btn-sm" onClick={(e) => {e.preventDefault(); props.submit(props.id)}}>Submit</button>
 </FormStyle>
 
 export default Form
