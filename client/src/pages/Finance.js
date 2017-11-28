@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 import Wrapper from '../components/Wrapper'
-import { PagesNav} from '../components/Nav'
+import { PagesNav } from '../components/Nav'
 import API from '../utils/API'
-import {Modal} from '../components/Modal'
+import { Modal } from '../components/Modal'
 import Form from '../components/Form'
 
 
@@ -143,18 +143,12 @@ const TotalSum = styled.div`
 font-size:1.4em;
 color:#333;
 padding-top:1em;
-padding-bottom:1em;
 font-family: 'Montserrat', sans-serif;
 width:100%;
 margin:auto;
-background-color:white;
 
-color:  #7e9dbb;
-
-border-left: 16px solid #7e9dbb;;
-border-top: 16px solid  #7e9dbb;;
-border-right: 16px solid  #7e9dbb;;
-border-bottom: 16px solid  #7e9dbb;;
+text-shadow 1px 1px 5px #7e9dbb;
+color: #333;
 
 
 }
@@ -162,144 +156,165 @@ border-bottom: 16px solid  #7e9dbb;;
 
 
 
-export class Finance extends React.Component{
+export class Finance extends React.Component {
 
-    constructor(props){
-        const date = new Date();
-        super(props)
-        this.state = {
-            fId : this.props.match.params.id,
-            finance: [],
-            financeArray:[],
-            incomeSum: 0,
-            expenseSum:0,
-            difference:0,
-            currentMonth: this.transformMonth(date.getMonth()),
-            currentDay: date.getDate(),
-            currentYear:date.getFullYear()
-        }
+  constructor(props) {
+    const date = new Date();
+    super(props)
+    this.state = {
+      fId: this.props.match.params.id,
+      finance: [],
+      financeArray: [],
+      incomeSum: 0,
+      expenseSum: 0,
+      billSum: 0,
+      difference: 0,
+      currentMonth: this.transformMonth(date.getMonth()),
+      currentDay: date.getDate(),
+      currentYear: date.getFullYear()
     }
+  }
 
- componentDidMount(){ 
-         API.getOne('finance', this.state.fId)
-          .then(res => {this.setState({finance: res.data.finance})})
-          .then(res1 => { 
-              let iSum = 0; 
-              let eSum = 0;
-              for (let i = 0; i < this.state.finance.length; i++) {
-                    iSum += this.state.finance[i].incomeAmount;
-                    eSum += this.state.finance[i].expenseAmount;
-                      this.setState({incomeSum : iSum, expenseSum: eSum})
-                    }
-                 })
-          .catch(err => console.log(err)) 
+  componentDidMount() {
+    API.getOne('finance', this.state.fId)
+      .then(res => { this.setState({ finance: res.data.finance }) })
+      .then(res1 => {
+        let iSum = 0;
+        let eSum = 0;
+        let bSum = 0;
+        for (let i = 0; i < this.state.finance.length; i++) {
+          iSum += this.state.finance[i].incomeAmount;
+          eSum += this.state.finance[i].expenseAmount;
+          bSum += this.state.finance[i].billAmount;
+          this.setState({ incomeSum: iSum, expenseSum: eSum, billSum: bSum })
+        }
+      })
+      .catch(err => console.log(err))
 
-      }
+  }
 
 
- upperCaseFirst = (string) => {
-     if(!string == ""){
-        const first = string.split('')
-        const firstSplice = first.splice(0, 1, first[0].toUpperCase())
-        const firstIsUpper = first.join('')
-        return firstIsUpper;
-     }
- }
+  upperCaseFirst = (string) => {
+    if (!string == "") {
+      const first = string.split('')
+      const firstSplice = first.splice(0, 1, first[0].toUpperCase())
+      const firstIsUpper = first.join('')
+      return firstIsUpper;
+    }
+  }
 
- transformMonth = (index) =>{
+  transformMonth = (index) => {
     const months = ["January", "February", "March", "April", "May", "June", "July",
-    "August", "September", "October", "November", "December"];
+      "August", "September", "October", "November", "December"];
 
     return months[index]
- }
+  }
 
 
- formSubmit = (id) =>{
+  formSubmit = (id) => {
 
-  if(id === "Income"){
-    id ={
-      fId : this.state.fId,
-      incomeName: this.upperCaseFirst(document.getElementById(`Income1`).value),
-      incomeAmount: parseFloat(document.getElementById(`Income2`).value),
-      month: this.state.currentMonth,
-      day: this.state.currentDay,
-      year: this.state.currentYear,
-      incomeBool: true
+    if (id === "Income") {
+      id = {
+        fId: this.state.fId,
+        incomeName: this.upperCaseFirst(document.getElementById(`Income1`).value),
+        incomeAmount: parseFloat(document.getElementById(`Income2`).value),
+        month: this.state.currentMonth,
+        day: this.state.currentDay,
+        year: this.state.currentYear,
+        incomeBool: true
       }
-    }else{
-      id ={
-        fId : this.state.fId,
+    } else if (id === "Bills"){
+      id = {
+        fId: this.state.fId,
+        billsName: this.upperCaseFirst(document.getElementById(`Bills1`).value),
+        billsAmount: parseFloat(document.getElementById(`Bills2`).value),
+        month: this.state.currentMonth,
+        day: this.state.currentDay,
+        year: this.state.currentYear,
+        billsBool: true
+      }
+    } else {
+      id = {
+        fId: this.state.fId,
         expenseName: this.upperCaseFirst(document.getElementById(`Expense1`).value),
         expenseAmount: parseFloat(document.getElementById(`Expense2`).value),
         month: this.state.currentMonth,
         day: this.state.currentDay,
         year: this.state.currentYear,
-        incomeBool: false
-        }
+        expenseBool: true
+      }
     }
-        API.saveOne("finance", id)
-        .then(res => API.getOne('finance', id.fId)
-          .then(res2 => { this.setState({finance: res2.data.finance})}
-         ))
-             .then(res3 => { 
-                let iSum = 0; 
-                let eSum = 0;
-                  for (let i = 0; i < this.state.finance.length; i++) {
-                   iSum += this.state.finance[i].incomeAmount;
-                   eSum += this.state.finance[i].expenseAmount;
-                    this.setState({incomeSum : iSum, expenseSum: eSum})
-            } 
-          })
+
+    API.saveOne("finance", id)
+      .then(res => API.getOne('finance', id.fId)
+        .then(res2 => { this.setState({ finance: res2.data.finance }) }
+        ))
+      .then(res3 => {
+        let iSum = 0;
+        let eSum = 0;
+        let bSum = 0;
+        for (let i = 0; i < this.state.finance.length; i++) {
+          iSum += this.state.finance[i].incomeAmount;
+          eSum += this.state.finance[i].expenseAmount;
+          bSum += this.state.finance[i].billAmount;
+          this.setState({ incomeSum: iSum, expenseSum: eSum, billSum: bSum })
         }
+      })
+  }
 
-render(){
+  render() {
 
-  
+
     console.log(this.state);
-    return(
-    <Wrapper>
-     <PagesNav fId={this.state.fId}/>
-       <H1 className="text-center">F I N A N C E</H1>
+    return (
+      <Wrapper>
+        <PagesNav fId={this.state.fId} />
+        <H1 className="text-center">F I N A N C E</H1>
         <Title className="col-12 text-center">{this.state.currentMonth} {this.state.currentYear}</Title>
         <Div1 className="row InputForms">
-            <Mbtn data-toggle="modal" data-target={`.modalincome`} className='col-12 btn btn-sm'>Enter New Income</Mbtn>
-            <Modal text="Enter Income" mClass="income">
-              <Form id="Income" text1='Job Name' text2='Amount' submit={this.formSubmit}/>
-            </Modal>
-          </Div1>
-          <Div2 className="row Income/ExpenseColumns">
-            <Div3 className="col-12">
-              <P>Income</P>
-              {this.state.finance.map(income => {if(!income.incomeAmount == 0){return(<IncomeDiv className='rounded'><ItemList>{income.incomeName} ${income.incomeAmount }</ItemList> <Delete className="btn btn-sm">&times;</Delete></IncomeDiv>)}})}
-               <ColTotal>Total: ${this.state.incomeSum}</ColTotal>
-              </Div3>
-          </Div2>
-          <Div1 className="row">
-            <Mbtn className='col-12 btn btn-sm'>Enter Bills</Mbtn>
-            </Div1>
-            <Div2 className="row BillColumns">
-             <Div3 className="col-12">
-             <P>BILLS</P>
-             </Div3>
-           </Div2>
-          <Div1 className="row InputForms">
-              <Mbtn data-toggle="modal" data-target={`.modalExpense`} className='col-12 btn btn-sm'>Enter New Expense</Mbtn>
-            <Modal text="Enter Expense" mClass="Expense">
-              <Form id="Expense" text1='Expense Name' text2='Amount' submit={this.formSubmit}/>
-            </Modal>
-            </Div1>
-            <Div2 className="row Income/ExpenseColumns">
-            <Div3 className="col-12">
-              <P>Expenses</P>
-                 {this.state.finance.map(expense =>  {if(!expense.expenseAmount == 0){return( <ExpenseDiv className='rounded'><ItemList>{expense.expenseName} ${expense.expenseAmount}</ItemList> <Delete className="btn btn-sm">&times;</Delete></ExpenseDiv>)}})}
-                <ColTotal>Total: ${this.state.expenseSum}</ColTotal>
-            </Div3>
-            </Div2>
-            
-          
-           
-            <TotalSum className="col-12 text-center"> DIFFERENCE <br/>${this.state.incomeSum - this.state.expenseSum}</TotalSum> 
-    </Wrapper>
+          <Mbtn data-toggle="modal" data-target={`.modalincome`} className='col-12 btn btn-sm'>Enter New Income</Mbtn>
+          <Modal text="Enter Income" mClass="income">
+            <Form id="Income" text1='Job Name' text2='Amount' submit={this.formSubmit} />
+          </Modal>
+        </Div1>
+        <Div2 className="row Income/Bills/ExpenseColumns">
+          <Div3 className="col-12">
+            <P>Income</P>
+            {this.state.finance.map(income => { if (!income.incomeAmount == 0) { return (<IncomeDiv className='rounded'><ItemList>{income.incomeName} ${income.incomeAmount}</ItemList> <Delete className="btn btn-sm">&times;</Delete></IncomeDiv>) } })}
+            <ColTotal>Total: ${this.state.incomeSum}</ColTotal>
+          </Div3>
+        </Div2>
+        <Div1 className="row">
+          <Mbtn data-toggle="modal" data-target={`.modalBills`} className='col-12 btn btn-sm'>Enter Monthly Bills</Mbtn>
+          <Modal text="Enter Monthly Bills" mClass="Bills">
+            <Form id="Bills" text1='Name' text2='Amount' submit={this.formSubmit} />
+          </Modal>
+        </Div1>
+        <Div2 className="row Income/Bills/ExpenseColumns">
+          <Div3 className="col-12">
+            <P>BILLS</P>
+            {this.state.finance.map(bill => { if (!bill.billAmount == 0) { return (<ExpenseDiv className='rounded'><ItemList>{bill.billName} ${bill.billAmount}</ItemList> <Delete className="btn btn-sm">&times;</Delete></ExpenseDiv>) } })}
+            <ColTotal>Total: ${this.state.billSum}</ColTotal>
+          </Div3>
+        </Div2>
+        <Div1 className="row InputForms">
+          <Mbtn data-toggle="modal" data-target={`.modalExpense`} className='col-12 btn btn-sm'>Enter New Misc. Expense</Mbtn>
+          <Modal text="Enter Expense" mClass="Expense">
+            <Form id="Expense" text1='Expense Name' text2='Amount' submit={this.formSubmit} />
+          </Modal>
+        </Div1>
+        <Div2 className="row Income/Bills/ExpenseColumns">
+          <Div3 className="col-12">
+            <P>Misc Expenses</P>
+            {this.state.finance.map(expense => { if (!expense.expenseAmount == 0) { return (<ExpenseDiv className='rounded'><ItemList>{expense.expenseName} ${expense.expenseAmount}</ItemList> <Delete className="btn btn-sm">&times;</Delete></ExpenseDiv>) } })}
+            <ColTotal>Total: ${this.state.expenseSum}</ColTotal>
+          </Div3>
+        </Div2>
+
+
+
+        <TotalSum className="col-12 text-center"> LEFTOVER BALANCE <br />${this.state.incomeSum - this.state.expenseSum}</TotalSum>
+      </Wrapper>
     )
- }
+  }
 }

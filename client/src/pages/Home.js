@@ -14,6 +14,8 @@ margin-bottom: 0.5em;
 margin-left: 39%;
 }
 `
+
+
 export class Home extends React.Component{
 
   constructor(props){

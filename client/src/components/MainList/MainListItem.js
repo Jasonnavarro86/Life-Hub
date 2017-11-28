@@ -16,7 +16,7 @@ const ListItem = styled.ul`
 `
 const Li = styled.li`
 @media (max-width: 414px){
-    background-color: silver;
+    background-color: #7e9dbb;
     width: 100%;
     height: 100%;
     color: #ffffff;
@@ -24,13 +24,6 @@ const Li = styled.li`
     padding: 0.8em;
     border: 0.5px solid grey;
     box-shadow: 10px 10px 5px #888888;
-}
-`
-const I = styled.i`
-@media (max-width: 414px){
-  
-    color: #;
-  
 }
 `
 
