@@ -11,7 +11,7 @@ const ListItem = styled.ul`
     margin: auto;
     padding: 0.5em;
     font-weight: bold;
-    width:85%;
+    width:92%;
 }
 `
 const Li = styled.li`
@@ -24,6 +24,13 @@ const Li = styled.li`
     padding: 0.8em;
     border: 0.5px solid grey;
     box-shadow: 10px 10px 5px #888888;
+}
+`
+const I = styled.i`
+@media (max-width: 414px){
+  
+    color: #;
+  
 }
 `
 

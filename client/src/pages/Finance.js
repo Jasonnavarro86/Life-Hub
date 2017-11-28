@@ -148,13 +148,13 @@ font-family: 'Montserrat', sans-serif;
 width:100%;
 margin:auto;
 background-color:white;
-background-color:#333;
+
 color:  #7e9dbb;
 
-border-left: 16px solid white;
-border-top: 16px solid  white;
-border-right: 16px solid  white;
-border-bottom: 16px solid  white;
+border-left: 16px solid #7e9dbb;;
+border-top: 16px solid  #7e9dbb;;
+border-right: 16px solid  #7e9dbb;;
+border-bottom: 16px solid  #7e9dbb;;
 
 
 }
@@ -274,6 +274,14 @@ render(){
                <ColTotal>Total: ${this.state.incomeSum}</ColTotal>
               </Div3>
           </Div2>
+          <Div1 className="row">
+            <Mbtn className='col-12 btn btn-sm'>Enter Bills</Mbtn>
+            </Div1>
+            <Div2 className="row BillColumns">
+             <Div3 className="col-12">
+             <P>BILLS</P>
+             </Div3>
+           </Div2>
           <Div1 className="row InputForms">
               <Mbtn data-toggle="modal" data-target={`.modalExpense`} className='col-12 btn btn-sm'>Enter New Expense</Mbtn>
             <Modal text="Enter Expense" mClass="Expense">
@@ -290,18 +298,7 @@ render(){
             
           
            
-            <TotalSum className="col-12 text-center"> DIFFERENCE <br/>${this.state.incomeSum - this.state.expenseSum}</TotalSum>
-            
-            
-            <Div1 className="row">
-            <Mbtn className='col-12 btn btn-sm'>Enter Bills</Mbtn>
-            </Div1>
-            <Div2 className="row BillColumns">
-             <Div3 className="col-12">
-             <P>BILLS</P>
-             </Div3>
-           </Div2>
-           
+            <TotalSum className="col-12 text-center"> DIFFERENCE <br/>${this.state.incomeSum - this.state.expenseSum}</TotalSum> 
     </Wrapper>
     )
  }

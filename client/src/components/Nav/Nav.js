@@ -29,6 +29,7 @@ font-size: 25px;
 text-decoration: none;
 font-family: 'Indie Flower', cursive;
 padding: 1.4em;
+color:#7e9dbb;
 
 }
 `
