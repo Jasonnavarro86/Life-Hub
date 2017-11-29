@@ -16,10 +16,11 @@ const ListItem = styled.ul`
 `
 const Li = styled.li`
 @media (max-width: 414px){
-    background-color: #7e9dbb;
+    background-color: silver;
     width: 100%;
     height: 100%;
     color: #ffffff;
+
     text-shadow: 2px 2px #333;
     padding: 0.8em;
     border: 0.5px solid grey;

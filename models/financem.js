@@ -12,7 +12,7 @@ const financeSchema = new Schema({
     expenseBool: Boolean,
     billName: String,
     billAmount: {type: Number, default: 0},
-    billsBool: Boolean,
+    billBool: Boolean,
     month: String,
     day: String,
     year: String,

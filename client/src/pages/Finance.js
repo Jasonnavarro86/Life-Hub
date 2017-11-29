@@ -226,8 +226,8 @@ export class Finance extends React.Component {
     } else if (id === "Bills"){
       id = {
         fId: this.state.fId,
-        billsName: this.upperCaseFirst(document.getElementById(`Bills1`).value),
-        billsAmount: parseFloat(document.getElementById(`Bills2`).value),
+        billName: this.upperCaseFirst(document.getElementById(`Bills1`).value),
+        billAmount: parseFloat(document.getElementById(`Bills2`).value),
         month: this.state.currentMonth,
         day: this.state.currentDay,
         year: this.state.currentYear,
@@ -263,8 +263,6 @@ export class Finance extends React.Component {
   }
 
   render() {
-
-
     console.log(this.state);
     return (
       <Wrapper>
@@ -281,7 +279,7 @@ export class Finance extends React.Component {
           <Div3 className="col-12">
             <P>Income</P>
             {this.state.finance.map(income => { if (!income.incomeAmount == 0) { return (<IncomeDiv className='rounded'><ItemList>{income.incomeName} ${income.incomeAmount}</ItemList> <Delete className="btn btn-sm">&times;</Delete></IncomeDiv>) } })}
-            <ColTotal>Total: ${this.state.incomeSum}</ColTotal>
+            <ColTotal>Total: ${this.state.incomeSum.toFixed(2)}</ColTotal>
           </Div3>
         </Div2>
         <Div1 className="row">
@@ -294,7 +292,7 @@ export class Finance extends React.Component {
           <Div3 className="col-12">
             <P>BILLS</P>
             {this.state.finance.map(bill => { if (!bill.billAmount == 0) { return (<ExpenseDiv className='rounded'><ItemList>{bill.billName} ${bill.billAmount}</ItemList> <Delete className="btn btn-sm">&times;</Delete></ExpenseDiv>) } })}
-            <ColTotal>Total: ${this.state.billSum}</ColTotal>
+            <ColTotal>Total: ${this.state.billSum.toFixed(2)}</ColTotal>
           </Div3>
         </Div2>
         <Div1 className="row InputForms">
@@ -307,13 +305,13 @@ export class Finance extends React.Component {
           <Div3 className="col-12">
             <P>Misc Expenses</P>
             {this.state.finance.map(expense => { if (!expense.expenseAmount == 0) { return (<ExpenseDiv className='rounded'><ItemList>{expense.expenseName} ${expense.expenseAmount}</ItemList> <Delete className="btn btn-sm">&times;</Delete></ExpenseDiv>) } })}
-            <ColTotal>Total: ${this.state.expenseSum}</ColTotal>
+            <ColTotal>Total: ${this.state.expenseSum.toFixed(2)}</ColTotal>
           </Div3>
         </Div2>
 
 
 
-        <TotalSum className="col-12 text-center"> LEFTOVER BALANCE <br />${this.state.incomeSum - this.state.expenseSum}</TotalSum>
+        <TotalSum className="col-12 text-center"> LEFTOVER BALANCE <br />${parseFloat(this.state.incomeSum - this.state.expenseSum - this.state.billSum).toFixed(2)}</TotalSum>
       </Wrapper>
     )
   }
