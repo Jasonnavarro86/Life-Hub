@@ -262,6 +262,15 @@ export class Finance extends React.Component {
       })
   }
 
+  deleteItem = (itemId) => {
+
+    API.deleteOne("finance",itemId)
+      .then(res => console.log(res)
+  )
+  .catch(err => console.log(err))
+    
+  }
+
   render() {
     console.log(this.state);
     return (
@@ -278,7 +287,7 @@ export class Finance extends React.Component {
         <Div2 className="row Income/Bills/ExpenseColumns">
           <Div3 className="col-12">
             <P>Income</P>
-            {this.state.finance.map(income => { if (!income.incomeAmount == 0) { return (<IncomeDiv className='rounded'><ItemList>{income.incomeName} ${income.incomeAmount}</ItemList> <Delete className="btn btn-sm">&times;</Delete></IncomeDiv>) } })}
+            {this.state.finance.map(income => { if (!income.incomeAmount == 0) { return (<IncomeDiv className='rounded'><ItemList>{income.incomeName} ${income.incomeAmount}</ItemList> <Delete onClick={() =>this.deleteItem(income._id)} className="btn btn-sm">&times;</Delete></IncomeDiv>) } })}
             <ColTotal>Total: ${this.state.incomeSum.toFixed(2)}</ColTotal>
           </Div3>
         </Div2>
@@ -291,7 +300,7 @@ export class Finance extends React.Component {
         <Div2 className="row Income/Bills/ExpenseColumns">
           <Div3 className="col-12">
             <P>BILLS</P>
-            {this.state.finance.map(bill => { if (!bill.billAmount == 0) { return (<ExpenseDiv className='rounded'><ItemList>{bill.billName} ${bill.billAmount}</ItemList> <Delete className="btn btn-sm">&times;</Delete></ExpenseDiv>) } })}
+            {this.state.finance.map(bill => { if (!bill.billAmount == 0) { return (<ExpenseDiv className='rounded'><ItemList>{bill.billName} ${bill.billAmount}</ItemList> <Delete onClick={() =>this.deleteItem(bill._id)}className="btn btn-sm">&times;</Delete></ExpenseDiv>) } })}
             <ColTotal>Total: ${this.state.billSum.toFixed(2)}</ColTotal>
           </Div3>
         </Div2>
@@ -304,7 +313,7 @@ export class Finance extends React.Component {
         <Div2 className="row Income/Bills/ExpenseColumns">
           <Div3 className="col-12">
             <P>Misc Expenses</P>
-            {this.state.finance.map(expense => { if (!expense.expenseAmount == 0) { return (<ExpenseDiv className='rounded'><ItemList>{expense.expenseName} ${expense.expenseAmount}</ItemList> <Delete className="btn btn-sm">&times;</Delete></ExpenseDiv>) } })}
+            {this.state.finance.map(expense => { if (!expense.expenseAmount == 0) { return (<ExpenseDiv className='rounded'><ItemList>{expense.expenseName} ${expense.expenseAmount}</ItemList> <Delete onClick={() =>this.deleteItem(expense._id)} className="btn btn-sm">&times;</Delete></ExpenseDiv>) } })}
             <ColTotal>Total: ${this.state.expenseSum.toFixed(2)}</ColTotal>
           </Div3>
         </Div2>
