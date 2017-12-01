@@ -264,10 +264,11 @@ export class Finance extends React.Component {
 
   deleteItem = (itemId) => {
 
-    API.deleteOne("finance",itemId)
-      .then(res => console.log(res)
-  )
-  .catch(err => console.log(err))
+    console.log(itemId);
+  //   API.deleteOne("finance",itemId)
+  //     .then(res => console.log(res)
+  // )
+  // .catch(err => console.log(err))
     
   }
 
