@@ -37,7 +37,7 @@ color:#7e9dbb;
 export const Nav = (props) =>
 
  <Container>
-  <A href={`/Home/${props.fId}`}> <strong>Family Hub <i style={{border:"none", color: "white"}} className="fas fa-users"></i></strong> </A>
+  <A href={`/Home/${props.fId}`}> <strong>Organized Rebel <i style={{border:"none", color: "white"}} className="fab fa-rebel"></i></strong> </A>
     {props.children}
  </Container>
 
