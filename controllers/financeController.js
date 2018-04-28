@@ -29,7 +29,6 @@ module.exports = {
     },
     remove: function(req,res){
         db.Finance 
-        
         .findById({_id: req.params.id})
         .then(dbModel => dbModel.remove())
         .then(dbModel2 => res.json(dbModel2))
